@@ -1,0 +1,34 @@
+name: Build & Release Hotfixes
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get the tag
+        run: echo "Tag is ${GITHUB_REF#refs/tags/}"
+
+# jobs:
+#   get_tags:
+#     runs-on: ubuntu-latest
+#     outputs:
+#       commit_hash: ${{ steps.get_commit.outputs.commit_hash }}
+
+#     steps:
+#       - name: Get All Tags
+#         id: get_tags
+#         run: |
+#           # Get all tags and store them in a variable
+#           tags=$(git tag)
+#           echo "Tags found: $tags"
+#           echo "::set-output name=tags::$tags"
+
+#       - name: Filter Tags by Regex
+#         id: filter_tags
+#         run: |
+#           # Define the regex pattern
+#           regex=""
