@@ -11,7 +11,8 @@ jobs:
     steps:
       - name: Get the tag
         run: |
-          if [[ ${GITHUB_REF#refs/tags/} =~ "v(\d{2}\.){4}\d{2}" ]]; then
+          regex="^v([0-9]{2}\.){4}[0-9]{2}$"
+          if [[ ${GITHUB_REF#refs/tags/} =~ $regex ]]; then
           echo "The string is valid."
           echo "Tag is ${GITHUB_REF#refs/tags/}"
           else
