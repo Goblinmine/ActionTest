@@ -10,7 +10,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Get the tag
-        run: echo "Tag is ${GITHUB_REF#refs/tags/}"
+        run: |
+          if [[ ${GITHUB_REF#refs/tags/} =~ "v(\d{2}\.){4}\d{2}" ]]; then
+          echo "The string is valid."
+          echo "Tag is ${GITHUB_REF#refs/tags/}"
+          else
+          echo "The string is not valid."
+          fi
 
 # jobs:
 #   get_tags:
